@@ -36,12 +36,15 @@ public class ErrorTest {
     }
 
     @Test
-    public void init() throws Exception {
+    public void errorPageTest() throws Exception {
         mockMvc.perform(get("/error"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
                 .andExpect(forwardedUrl("index.ftlh"));
+    }
 
+    @Test
+    public void nonExistentErrorCaughtTest() throws Exception {
         mockMvc.perform(get("/NonExistent"))
                 .andExpect(status().isNotFound());
     }

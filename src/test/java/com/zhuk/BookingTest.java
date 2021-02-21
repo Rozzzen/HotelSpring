@@ -29,7 +29,7 @@ public class BookingTest {
     private MockMvc bookingMvc;
 
     @Test
-    public void init() throws Exception {
+    public void getRequestTest() throws Exception {
         bookingMvc.perform(get("/booking"))
                 .andExpect(authenticated())
                 .andExpect(status().isOk())

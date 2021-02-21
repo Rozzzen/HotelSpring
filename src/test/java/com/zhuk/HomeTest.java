@@ -36,12 +36,15 @@ public class HomeTest {
     }
 
     @Test
-    public void init() throws Exception {
+    public void homepageGetRequestTest() throws Exception {
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
                 .andExpect(forwardedUrl("index.ftlh"));
+    }
 
+    @Test
+    public void homepagePostRequestTest() throws Exception {
         mockMvc.perform(post("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))

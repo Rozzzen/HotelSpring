@@ -27,8 +27,7 @@ public class RoomTest {
     private MockMvc mockMvc;
 
     @Test
-    public void init() throws Exception {
-
+    public void correctAmountOfRoomsOnRoomPageTest() throws Exception {
         mockMvc.perform(get("/rooms?checkin=2021-09-19&checkout=2021-09-27"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("rooms"))
