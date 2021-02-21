@@ -8,11 +8,11 @@
             <div class="row mb-3">
                 <div class="form-group col-md-6">
                     <label for="name" class="form-label"><@spring.message "register.firstname"/></label>
-                    <input pattern="/^[a-zA-Z]+$/" type="text" class="form-control" id="name" required name="name">
+                    <input pattern="^[a-zA-Z]+$" type="text" class="form-control" id="name" required name="name">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="surname" class="form-label"><@spring.message "register.lastname"/></label>
-                    <input pattern="/^[a-zA-Z]+$/" type="text" class="form-control" id="surname" required name="surname">
+                    <input pattern="^[a-zA-Z]+$" type="text" class="form-control" id="surname" required name="surname">
                 </div>
             </div>
             <div class="mb-3">

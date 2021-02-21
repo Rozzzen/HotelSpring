@@ -1,3 +1,6 @@
+package com.zhuk;
+
+import com.zhuk.controller.ErrorHandlerController;
 import com.zhuk.controller.HomeController;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,17 +13,16 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-public class HomeTest {
+public class ErrorTest {
 
     private MockMvc mockMvc;
 
     @InjectMocks
-    private HomeController controller;
+    private ErrorHandlerController controller;
 
     @Before
     public void setUp() throws Exception {
@@ -35,15 +37,12 @@ public class HomeTest {
 
     @Test
     public void init() throws Exception {
-
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/error"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("index"))
                 .andExpect(forwardedUrl("index.ftlh"));
 
-        mockMvc.perform(post("/"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("index"))
-                .andExpect(forwardedUrl("index.ftlh"));
+        mockMvc.perform(get("/NonExistent"))
+                .andExpect(status().isNotFound());
     }
 }

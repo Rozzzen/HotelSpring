@@ -10,12 +10,12 @@
                     <label for="check_in" class="form-label"><@spring.message "rooms.checkin"/></label>
                     <input class="form-control" id="check_in"
                            value="" type="date" name="checkin"
-                           onchange="check_out.min = this.value" required>
+                           onchange="check_out.min = this.value" required="required"/>
                 </div>
                 <div class="col-sm-5">
                     <label for="check_out" class="form-label"><@spring.message "rooms.checkout"/></label>
                     <input class="form-control" id="check_out"
-                           value="" type="date" name="checkout" required>
+                           value="" type="date" name="checkout" required="required"/>
                 </div>
                 <div class="col-sm-2 mt-auto">
                     <button type="submit" class="btn btn-success"><@spring.message "rooms.search"/></button>
@@ -24,14 +24,14 @@
         </form>
     </#if>
     <@p.pagination sort url page>
-        <div class="row mx-4 my-4">
+        <div class="row mx-4 my-4" id = "card-container">
             <#list page.content as room>
                 <div class="col-sm-4 my-3">
                     <div class="card">
                         <div class="card-header"><@spring.message "room.number"/>: ${room.id}</div>
                         <div class="card-body">
                             <img src="/img/${room.imgName}" class="card-img-top"
-                                 alt="room">
+                                 alt="room"/>
                             <ul class="list-group">
                                 <li class="list-group-item"><@spring.message "application.price"/>: ${room.price}UAH
                                 </li>
