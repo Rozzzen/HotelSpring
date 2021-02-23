@@ -8,11 +8,11 @@
             <div class="row mb-3">
                 <div class="form-group col-md-6">
                     <label for="name" class="form-label"><@spring.message "register.firstname"/></label>
-                    <input pattern="^[a-zA-Z]+$" type="text" class="form-control" id="name" required name="name">
+                    <input type="text" class="form-control" id="name" required name="name">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="surname" class="form-label"><@spring.message "register.lastname"/></label>
-                    <input pattern="^[a-zA-Z]+$" type="text" class="form-control" id="surname" required name="surname">
+                    <input type="text" class="form-control" id="surname" required name="surname">
                 </div>
             </div>
             <div class="mb-3">
@@ -84,6 +84,9 @@
                         </select>
                     </div>
                 </div>
+            </div>
+            <div class ="mb-3">
+                <div class="g-recaptcha" data-sitekey="6LcFBGUaAAAAAEypvnJjgv_sOm6a6Vat2NGtRee5"></div>
             </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <button type="submit" class="btn btn-primary mb-3"><@spring.message "login.registerhref"/></button>
