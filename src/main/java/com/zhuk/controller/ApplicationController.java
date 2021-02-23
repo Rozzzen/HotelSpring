@@ -83,7 +83,7 @@ public class ApplicationController {
         booking.setUntil(application.getCheckout());
         booking.setUser(user);
         bookingService.saveBooking(booking);
-//        applicationService.createPaymentEvent(applicationId);
+        applicationService.createPaymentEvent(applicationId);
         return "redirect:/applications";
     }
 
