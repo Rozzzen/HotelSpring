@@ -1,23 +1,22 @@
 package com.zhuk.service;
 
-import com.zhuk.domain.room.Room;
-import com.zhuk.domain.room.Status;
 import com.zhuk.domain.user.User;
 import com.zhuk.repo.UserRepo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService {
 
     private final UserRepo userRepo;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepo userRepo) {
+    public UserService(UserRepo userRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -27,6 +26,15 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found!");
         }
         return user;
+    }
+
+    public void save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepo.save(user);
+    }
+
+    public User findByEmail(String email) {
+        return userRepo.findByEmail(email);
     }
 
 }

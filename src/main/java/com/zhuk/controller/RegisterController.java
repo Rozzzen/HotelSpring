@@ -3,8 +3,9 @@ package com.zhuk.controller;
 import com.zhuk.domain.dto.CaptchaResponseDto;
 import com.zhuk.domain.user.User;
 import com.zhuk.repo.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.zhuk.service.UserService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -27,11 +28,11 @@ public class RegisterController {
     @Value("${recaptcha.secret}")
     private String secretKey;
 
-    private RestTemplate restTemplate;
-    private final UserRepo userRepo;
+    private final RestTemplate restTemplate;
+    private final UserService userService;
 
-    public RegisterController(UserRepo userRepo, RestTemplate restTemplate) {
-        this.userRepo = userRepo;
+    public RegisterController(UserService userService, RestTemplate restTemplate) {
+        this.userService = userService;
         this.restTemplate = restTemplate;
     }
 
@@ -51,10 +52,10 @@ public class RegisterController {
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
 
         if(!response.isSuccess()) model.put("alert", "Please fill captcha!");
-        if(userRepo.findByEmail(user.getEmail()) != null) model.put("alert", "User with this email already exists");
-        if (userRepo.findByEmail(user.getEmail()) != null || !response.isSuccess()) return "register";
+        if(userService.findByEmail(user.getEmail()) != null) model.put("alert", "User with this email already exists");
+        if (userService.findByEmail(user.getEmail()) != null || !response.isSuccess()) return "register";
 
-        userRepo.save(user);
+        userService.save(user);
         return "redirect:/login";
     }
 
