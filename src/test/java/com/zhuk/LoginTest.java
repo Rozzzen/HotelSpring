@@ -31,7 +31,7 @@ public class LoginTest {
     }
 
     @Test
-    @Sql(value = {"/create-user-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/sql/create-user-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     public void successfulLoginTest() throws Exception {
         mockMvc.perform(formLogin().user("email", "test1@gmail.com").password("testpassword1"))
         .andExpect(status().is3xxRedirection())

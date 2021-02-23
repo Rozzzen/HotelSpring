@@ -20,7 +20,7 @@
                 <th scope="col"><@spring.message "application.actions"/></th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="application-container">
             <#list page.content as application>
                 <tr>
                     <td class="align-middle">${application.id}</td>

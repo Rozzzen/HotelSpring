@@ -29,7 +29,7 @@ public class Room {
     @NotNull
     private String imgName;
 
-    @OneToMany(mappedBy = "room")
+    @OneToMany(mappedBy = "room", cascade = CascadeType.REMOVE)
     private Set<Booking> bookings;
 
     public Set<Booking> getBookings() {

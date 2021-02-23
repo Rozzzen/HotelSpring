@@ -33,12 +33,12 @@ public class RegisterController {
     @PostMapping
     public String addUser(User user, Map<String, Object> model) {
 
+        user.setBirthDate(validateDate(user.getDay(), user.getMonth(), user.getYear()));
+
         if (userRepo.findByEmail(user.getEmail()) != null) {
             model.put("alert", "User with this email already exists");
             return "register";
         }
-
-        user.setBirthDate(validateDate(user.getDay(), user.getMonth(), user.getYear()));
 
         userRepo.save(user);
         return "redirect:/login";

@@ -45,7 +45,7 @@
                                 <li><a class="dropdown-item" href="/admin/edit/rooms"><@spring.message "header.editrooms"/></a></li>
                             </#if>
                             <li>
-                                <hr class="dropdown-divider">
+                                <hr class="dropdown-divider"/>
                             </li>
                             <li>
                                 <form action="/logout" method="post">

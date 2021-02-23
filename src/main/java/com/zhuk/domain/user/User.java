@@ -1,6 +1,7 @@
 package com.zhuk.domain.user;
 
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.OnDelete;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

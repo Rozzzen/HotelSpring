@@ -75,6 +75,7 @@ public class AdminController {
         model.put("page", roomPage);
         model.put("id", id);
         model.put("sort", sort);
+        model.put("totalElements", roomService.countAll());
         model.put("url", "/admin/applications/rooms");
         model.put("checkin", checkinDate);
         model.put("checkout", checkoutDate);
